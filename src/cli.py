@@ -18,3 +18,9 @@ def produce(max_workers: int, timeout: float) -> None:
     """
     _wait_for_service("kafka", 9092)
     _produce(max_workers, timeout)
+
+
+@click.command()
+def consume() -> None:
+    """CLI for consuming data from kafka."""
+    pass

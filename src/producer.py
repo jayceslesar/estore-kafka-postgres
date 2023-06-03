@@ -1,7 +1,9 @@
-import concurrent.futures
+"""Producer module for code producers use."""
+
 import json
 import socket
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 from kafka import KafkaProducer
 
@@ -52,7 +54,7 @@ def produce(max_workers: int = 5, timeout: float = 10.0) -> None:
     producer = KafkaProducer(bootstrap_servers="kafka:9092", value_serializer=lambda v: json.dumps(v).encode("utf-8"))
     print(f"Running {max_workers} for {timeout} seconds...")
     start_time = time.time()
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
         while True:
             if time.time() - start_time >= timeout:
                 break
