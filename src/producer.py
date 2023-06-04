@@ -12,8 +12,8 @@ from src.generate_data import make_fake_estore_data
 def send_purchases_to_kafka(producer: KafkaProducer) -> None:
     """Worker function to push data to kafka.
 
-        Args:
-            producer: producer instance
+    Args:
+        producer: producer instance
     """
     try:
         purchase_data = make_fake_estore_data()
