@@ -19,6 +19,7 @@ dependencies = [
   "kafka-python",
   "Faker",
   "click",
+  "polars",
 ]
 
 [project.scripts]
