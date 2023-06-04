@@ -1,6 +1,6 @@
 import pytest
 
-from src.consumer import _reformat_message
+from src.transform_and_load import _reformat_message
 
 
 @pytest.fixture()
