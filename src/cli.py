@@ -2,11 +2,20 @@
 
 import click
 
-from src.producer import _wait_for_service
+from src.common import _wait_for_service
+from src.consumer import consume as _consume
 from src.producer import produce as _produce
 
+HOST = "kafka"
+PORT = 9092
 
-@click.command()
+
+@click.group()
+def workers():
+    pass
+
+
+@workers.command()
 @click.option("-m", "--max-workers", type=int, default=5)
 @click.option("-t", "--timeout", type=float, default=10.0)
 def produce(max_workers: int, timeout: float) -> None:
@@ -16,11 +25,12 @@ def produce(max_workers: int, timeout: float) -> None:
         max_workers: number of threads
         timeout: timeout for each worker thread
     """
-    _wait_for_service("kafka", 9092)
-    _produce(max_workers, timeout)
+    _wait_for_service(HOST, PORT)
+    _produce(HOST, PORT, max_workers, timeout)
 
 
-@click.command()
+@workers.command()
 def consume() -> None:
     """CLI for consuming data from kafka."""
-    pass
+    _wait_for_service(HOST, PORT)
+    _consume(HOST, PORT, "transformed")

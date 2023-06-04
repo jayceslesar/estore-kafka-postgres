@@ -15,7 +15,6 @@ description = "Fun Repo to Explore Streaming Data"
 requires-python = ">=3.10"
 
 dependencies = [
-  "sqlalchemy",
   "numpy",
   "kafka-python",
   "Faker",
@@ -23,7 +22,7 @@ dependencies = [
 ]
 
 [project.scripts]
-produce = "src.cli:produce"
+workers = "src.cli:workers"
 
 [project.optional-dependencies]
 dev = [
